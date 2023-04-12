@@ -1,3 +1,6 @@
+import AddCart from "../e2e/ADD CART/add";
+const CartShop = new AddCart();
+
 Cypress.Commands.add("LogIn", ()=>{
     cy.visit(Cypress.env("baseUrl"))
     cy.url().should('include', Cypress.env("baseUrl"))
@@ -8,5 +11,5 @@ Cypress.Commands.add("LogIn", ()=>{
     cy.get('#menuUserLink', {timeout:4000}).should('contain','wiwili')
 })  
 Cypress.Commands.add("removeAll", ()=>{
-    cy.get('a[class="remove red ng-scope"]').click({force:true})
-}) 
+            cy.get('a[class="remove red ng-scope"]').click({multiple:true})
+});

@@ -1,5 +1,5 @@
   {
-    "user":"Jelos",
+    "user":"kiss1",
     "email": "hello@cypress.io",
     "pass": "Cr277",
     "passw": "Cr277",
@@ -11,9 +11,23 @@
     "state": "DC",
     "postal": "700002",
 
-    "name1": "111111",
-    "email1": "222222",
-    "Adress1": "Cra 27 #17",
-    "rAdress1": "Cra 27 b05"
+    "user1":"chllos",
+    "user2":"clos",
+    "email1":"hellocypress.io",
+    "email2": "hello@cypressio",
+    "pass1": "C276",
+    "passw1": "C276",
+    "name1": "124",
+    "lname1": "12345",
+    "phone1": "gooff",
+    "city1": "11122",
+    "address1": "Cr",
+    "state1": "12123",
+    "postal1": "brasilia",
+
+    "creditcard": "4365379876068007",
+    "creditfail": "1111111",
+    "cvv": "111",
+    "cvvfail": "11"
   }
   

@@ -1,5 +1,7 @@
 import Sign from './singup';
 const SignUP = new Sign();
+const credentials = require('../../fixtures/example.json')
+
 
 describe("Pruebas de sección sign up", ()=>{
     beforeEach( function() { // Antes de cada prueba ejecuta el código siguiente:
@@ -8,10 +10,13 @@ describe("Pruebas de sección sign up", ()=>{
         cy.url().should('include', Cypress.env("baseUrl"))
         SignUP.buttonUser().click()
         SignUP.buttonCreate().click()
+        SignUP.register().should('be.disabled')
         
     });
-it("Verificar la correcta creación de una cuenta", ()=>{
-    const credentials = require('../../fixtures/example.json')
+it("Verify that the REGISTER button is disabled when attempting to create a new account:", ()=>{
+    SignUP.register().should('be.disabled')
+    })
+it("Verify the correct creation of an account in AdvantageDEMO with all credentials following these criteria:", ()=>{
 
     SignUP.register().should('be.disabled')
     SignUP.inputUsername().type(credentials.user)
@@ -31,11 +36,10 @@ it("Verificar la correcta creación de una cuenta", ()=>{
     SignUP.VerifyUser().should('contain',credentials.user)
         
 })
-it("Verificar si es posible crear una cuenta con un correo ya existente", ()=>{
-    const credentials = require('../../fixtures/example.json')
+it("Verify that it is not possible to create an account with an already existing email address", ()=>{
 
     SignUP.register().should('be.disabled')
-    SignUP.inputUsername().type(credentials.user1)
+    SignUP.inputUsername().type(credentials.user)
     SignUP.inputEmail().type(credentials.email)
     SignUP.inputPassword().type(credentials.pass1)
     SignUP.inputPassver().type(credentials.passw1, {force:true})
@@ -49,11 +53,11 @@ it("Verificar si es posible crear una cuenta con un correo ya existente", ()=>{
     SignUP.inputPostal().type(credentials.postal)
     SignUP.VerifyAgree().click()
     SignUP.register().should('be.enabled').click()
-    SignUP.VerifyUser().should('contain',credentials.user1)
+    SignUP.VerifyUser().should('contain',credentials.user)
+
 
 })
-it.only("Verificar si es posible crear una cuenta con un correo no válido", ()=>{
-    const credentials = require('../../fixtures/example.json')
+it("Verify that it is not possible to create an account with an invalid email address", ()=>{
     
     SignUP.register().should('be.disabled')
     SignUP.inputUsername().type(credentials.user2)
@@ -69,6 +73,22 @@ it.only("Verificar si es posible crear una cuenta con un correo no válido", ()=
     SignUP.inputState().type(credentials.state, {force:true})
     SignUP.inputPostal().type(credentials.postal)
     SignUP.VerifyAgree().click()
+    SignUP.register().should('be.disabled')
+})
+it("verify that it's not possible to create an account without accepting the terms and conditions checkbox", () =>{
+    
+    SignUP.inputUsername().type(credentials.user)
+    SignUP.inputEmail().type(credentials.email)
+    SignUP.inputPassword().type(credentials.pass)
+    SignUP.inputPassver().type(credentials.passw, {force:true})
+    SignUP.inputName().type(credentials.name)
+    SignUP.inputLastname().type(credentials.lname)
+    SignUP.inputPhone().type(credentials.phone)
+    SignUP.selectCountry().select('Colombia')
+    SignUP.inputCity().type(credentials.city)
+    SignUP.inputAddress().type(credentials.address)
+    SignUP.inputState().type(credentials.state, {force:true})
+    SignUP.inputPostal().type(credentials.postal)
     SignUP.register().should('be.disabled')
 })
 })

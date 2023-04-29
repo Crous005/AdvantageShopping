@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/andrewjruss7/php-travel#readme",
   "devDependencies": {
-    "cypress": "^12.7.0"
+    "cypress": "^12.7.0",
+    "faker": "^6.6.6"
   }
 }

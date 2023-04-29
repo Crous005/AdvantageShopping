@@ -3,9 +3,10 @@ const Contact = new contactUs();
 
 describe("Pruebas de sección Contact Us", ()=>{
     beforeEach(()=>{
+        cy.GetWeb()
         cy.LogIn()
 })   
-it("Validar que al tratar de contactarse con empresa, te genere un mensaje de enviado el mensaje", ()=>{
+it("Verify that a message is generated upon attempting to contact the company", ()=>{
     Contact.clickSend().should('be.disabled')
     Contact.selectCategory().select("Laptops")
     Contact.selectProduct().select("HP Chromebook 14 G1(ES)")
@@ -14,7 +15,7 @@ it("Validar que al tratar de contactarse con empresa, te genere un mensaje de en
     Contact.clickSend().click().should('be.enabled')
     Contact.messageSent().should('contain','CONTINUE SHOPPING')
 })
-it("Validar que al tratar de contactarse con empresa con un correo no válido, no permita enviar el mensaje", ()=>{ //revisar, acepta cualquier escrito en el correo
+it("Verify that an invalid email address prevents sending the message when attempting to contact the company:", ()=>{ //revisar, acepta cualquier escrito en el correo
     Contact.clickSend().should('be.disabled')
     Contact.selectCategory().select("Laptops")
     Contact.selectProduct().select("HP Chromebook 14 G1(ES)")

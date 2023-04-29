@@ -1,11 +1,11 @@
-import ProductPO from "./ourproductPO";
-const OurProduct = new ProductPO();
+import productPO from "./ourproductPO";
+const OurProduct = new productPO();
 
 describe("Pruebas de la sección our product", ()=>{
    beforeEach(()=>{
     cy.LogIn()
 })
-it("Verificar que al ingresar al producto de su elección, entre de manera correcta y muestre estos elementos", ()=>{
+it("Verify that upon selecting a product, the correct elements are displayed", ()=>{
     OurProduct.buttonspeakers().click()
     OurProduct.selectSpeaker20().click()
     OurProduct.selectTitle().should('contain', 'SPEAKER')
@@ -16,11 +16,17 @@ it("Verificar que al ingresar al producto de su elección, entre de manera corre
     OurProduct.selectSpeaker23().click()
     OurProduct.selectTitle().should('contain', 'SPEAKER')
 }) 
-it.only("Verificar que el filtro de pesos distribuya los productos", ()=>{
+it("Verify that the product filter accurately discriminates products based on user selection", ()=>{
     OurProduct.buttonspeakers().click()
     OurProduct.selectAccordionWeight().click()
     OurProduct.selectWeight().click()
     OurProduct.selectSpeaker21().click()
     OurProduct.VerifyWeight().should('contain','1.26 lb')
+})
+it.only("Verify that the selected item's color matches the one that has been chosen", ()=>{
+    OurProduct.buttonspeakers().click()
+    OurProduct.selectSpeaker25().click()
+    OurProduct.selectColorRed().click({force: true})
+    OurProduct.verifyimage().click().should('have.attr', 'ng-src', '/catalog/fetchImage?image_id=4702');
 })
 })

@@ -1,4 +1,4 @@
-class AddCart{
+class addCart{
     elements = {
         speakersProduct : () => cy.get("#speakersTxt"),
         speaker20 : () => cy.get("#20"),
@@ -15,8 +15,8 @@ class AddCart{
         backHome: ()=>cy.get('span[class="logoDemo roboto-light ng-binding"]'),
         miceProduct: () => cy.get("#miceTxt"),
         mice31 : () => cy.get("#31"),
-        removeAll : () => cy.removeAll(),
-
+        removeFirst : () => cy.removeFirst(),
+        
         checkbtn:()=>cy.get('#checkOutButton'),
         next:()=>cy.get('#next_btn'),
         safePay:()=>cy.get('input[name="safepay"]'),
@@ -30,6 +30,8 @@ class AddCart{
         cvvNumber:()=>cy.get('input[name="cvv_number"]'),
         cardHolder:()=>cy.get('input[name="cardholder_name"]'),
         btnManual:()=>cy.get('#pay_now_btn_ManualPayment'),
+        btnSavePay: () =>cy.get('input[name="save_safepay"]'),
+        
     }
     buttonspeakers(){
         return this.elements.speakersProduct();
@@ -76,8 +78,8 @@ class AddCart{
     selectMice31(){
         return this.elements.mice31();
     }
-    removeAllProduct(){
-        return this.elements.removeAll();
+    removeFirstProduct(){
+        return this.elements.removeFirst();
     }
     checkOutBtn(){
         return this.elements.checkbtn();
@@ -118,5 +120,8 @@ class AddCart{
     ManualPay(){
         return this.elements.btnManual();
     }
+    SaveManualPay(){
+        return this.elements.btnSavePay();
+    }
 }
-export default AddCart;
+export default addCart;

@@ -1,4 +1,4 @@
-class ProductPO{
+class productPO{
     elements = {
         speakersProduct : () => cy.get("#speakersTxt"),
         speaker20 : () => cy.get("#20"),
@@ -10,6 +10,9 @@ class ProductPO{
         accordionWeightSpeakers: () =>cy.get("#accordionAttrib2"),
         weightspeaker: () =>cy.get('label[for="weight_4"]'),
         weight: () =>cy.get('label[class="value ng-binding"]'),
+        colorTurquesse: () =>cy.get("span[title='TURQUOISE']"),
+        colorRed: () =>cy.get("[ng-show='firstImageToShow']>.RED"),
+        imageDefault: () =>cy.get('#mainImg'),
     }
     buttonspeakers(){
         return this.elements.speakersProduct();
@@ -41,7 +44,15 @@ class ProductPO{
     VerifyWeight(){
         return this.elements.weight();
     }
+    selectColorTurquoise(){
+        return this.elements.colorTurquesse();
+    }
+    selectColorRed(){
+        return this.elements.colorRed();
+    }
+    verifyimage(){
+        return this.elements.imageDefault();
+    }
+ }
 
-}
-
-export default ProductPO;
+export default productPO;
